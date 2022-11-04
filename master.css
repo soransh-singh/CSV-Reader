@@ -1,11 +1,13 @@
 :root {
     --clr-pr: 125 75% 65%;
-    --clr-sec: 60 100% 50%;
+    --clr-sec: 70 90% 65%;
     --clr-black: 0 0% 12%;
     --clr-white: 0 0% 100%;
 
     --space-no: 0;
-    --space-sm: 1rem;
+    --space-sm: 1.5rem;
+
+    --shadow-pr: 2px 4px 8px hsl(var(--clr-black)/0.45);
 }
 
 * {
@@ -17,6 +19,7 @@ body {
     margin: 0;
     color: hsl(var(--clr-black));
     line-height: 1.5;
+    scroll-behavior: smooth;
 }
 
 h1 {
@@ -43,6 +46,8 @@ form {
     gap: var(--space-sm);
     padding: var(--space-sm);
     border-radius: 0.5rem;
+    border: 8px solid hsl(var(--clr-sec)/0.9);
+    box-shadow: var(--shadow-pr);
 }
 
 label {
@@ -59,10 +64,21 @@ input {
 button {
     align-self: flex-end;
     padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    border: 2px solid hsl(var(--clr-sec));
+    border-radius: 0.35rem;
+    border: 4px solid hsl(var(--clr-sec));
     background-color: hsl(var(--clr-sec));
     font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    box-shadow: var(--shadow-pr);
+}
+
+button:hover {
+    background-color: hsl(var(--clr-sec)/0.8);
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.9);
 }
 
 .error {
@@ -74,4 +90,33 @@ button {
     font-weight: bold;
     font-size: 14px;
     text-align: center;
+}
+
+.table {
+    margin-inline: 1rem;
+    overflow-x: scroll;
+    margin-bottom: 2rem;
+}
+
+table {
+    background-color: hsl(var(--clr-pr));
+    padding: 1rem;
+    border-radius: 0.25rem;
+    box-shadow: var(--shadow-pr);
+    margin-inline: auto;
+    margin-bottom: 1rem;
+}
+
+tr {
+    background-color: white;
+}
+
+tr:nth-of-type(2n+1) {
+    background-color: hsl(var(--clr-white)/0.5);
+}
+
+td {
+    min-width: 80px;
+    padding: 0.25rem 0.5rem;
+    font-weight: 600;
 }
