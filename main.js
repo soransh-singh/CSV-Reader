@@ -1,33 +1,45 @@
 function Upload() {
-        var fileUpload = document.querySelector("#fileUpload");
+    var fileUpload = document.querySelector("#fileUpload");
 
-        var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
+    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
 
-        if (regex.test(fileUpload.value.toLowerCase())) {
-            if (typeof (FileReader) != "undefined") {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    var table = document.createElement("table");
-                    var rows = e.target.result.split("\n");
-                    for (var i = 0; i < rows.length; i++) {
-                        var cells = rows[i].split(",");
-                        if (cells.length > 1) {
-                            var row = table.insertRow(-1);
-                            for (var j = 0; j < cells.length; j++) {
-                                var cell = row.insertCell(-1);
-                                cell.innerHTML = cells[j];
-                            }
+    if (regex.test(fileUpload.value.toLowerCase())) {
+        if (typeof (FileReader) != "undefined") {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var table = document.createElement("table");
+                var rows = e.target.result.split("\n");
+                for (var i = 0; i < rows.length; i++) {
+                    var cells = rows[i].split(",");
+                    if (cells.length > 1) {
+                        var row = table.insertRow(-1);
+                        for (var j = 0; j < cells.length; j++) {
+                            var cell = row.insertCell(-1);
+                            cell.innerHTML = cells[j];
                         }
                     }
-                    var divCSV = document.getElementById("divCSV");
-                    divCSV.innerHTML = "";
-                    divCSV.appendChild(table);
                 }
-                reader.readAsText(fileUpload.files[0]);
-            } else {
-                alert("This browser does not support HTML5.");
+                var csv = document.getElementById("csv");
+                csv.innerHTML = "";
+                csv.appendChild(table);
             }
+            reader.readAsText(fileUpload.files[0]);
         } else {
-            alert("Please upload a valid CSV file.");
+            
+            error.innerHTML = "This browser does not support HTML5."
         }
+    } else {
+        error.innerHTML = "Please upload a valid CSV file."
     }
+}
+
+window.onload = (e)=>{
+    const btn = document.querySelector("form");
+    const error = document.querySelector(".error");
+    error.innerHTML = ""
+    btn.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        console.log("btn clicked");
+        Upload()
+    })
+}
