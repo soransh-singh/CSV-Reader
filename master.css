@@ -1,6 +1,6 @@
 :root {
-    --clr-pr: 125 75% 65%;
-    --clr-sec: 70 90% 65%;
+    --clr-pr: 151 83% 34%;
+    --clr-sec: 44 100% 65%;
     --clr-black: 0 0% 12%;
     --clr-white: 0 0% 100%;
 
@@ -65,7 +65,7 @@ button {
     align-self: flex-end;
     padding: 0.5rem 1rem;
     border-radius: 0.35rem;
-    border: 4px solid hsl(var(--clr-sec));
+    border: none;
     background-color: hsl(var(--clr-sec));
     font-weight: bold;
     transition: all 0.3s ease-in-out;
@@ -100,7 +100,7 @@ button:active {
 
 table {
     background-color: hsl(var(--clr-pr));
-    padding: 1rem;
+    padding: 0.5rem;
     border-radius: 0.25rem;
     box-shadow: var(--shadow-pr);
     margin-inline: auto;
@@ -108,11 +108,16 @@ table {
 }
 
 tr {
-    background-color: white;
+    background-color: hsl(var(--clr-white));
 }
 
 tr:nth-of-type(2n+1) {
     background-color: hsl(var(--clr-white)/0.5);
+}
+
+tr:nth-of-type(1) {
+    background-color: hsl(0 0% 30%/0.25);
+    color: hsl(var(--clr-white)/0.85);
 }
 
 td {
