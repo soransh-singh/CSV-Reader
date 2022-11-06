@@ -1,34 +1,36 @@
 window.onload = (e)=>{
-    const btn = document.querySelector("form");
-    const error = document.querySelector(".error");
+    const btn = document.querySelector("form")
+    const error = document.querySelector(".error")
     
     function Upload() {
-        var fileUpload = document.querySelector("#fileUpload");
+        const fileUpload = document.querySelector("#fileUpload")
 
-        var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
+        const regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
 
         if (regex.test(fileUpload.value.toLowerCase())) {
             if (typeof (FileReader) != "undefined") {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    var table = document.createElement("table");
-                    var rows = e.target.result.split("\n");
-                    for (var i = 0; i < rows.length; i++) {
-                        var cells = rows[i].split(",");
+                const reader = new FileReader()
+                reader.onload =  (e)=> {
+                    const table = document.createElement("table");
+                    const rows = e.target.result.split("\n");
+                    for (let i = 0; i < rows.length; i++) {
+                        let cells = rows[i].split(",")
                         if (cells.length > 1) {
-                            var row = table.insertRow(-1);
-                            for (var j = 0; j < cells.length; j++) {
-                                var cell = row.insertCell(-1);
+
+                            const row = table.insertRow(-1);
+
+                            for (let j = 0; j < cells.length; j++) {
+                                const cell = row.insertCell(-1)
                                 cells[j]=cells[j].replaceAll('"','')
-                                cell.innerHTML = cells[j];
+                                cell.innerHTML = cells[j]
                             }
                         }
                     }
-                    var csv = document.getElementById("csv");
+                    var csv = document.getElementById("csv")
                     csv.innerHTML = "";
                     csv.appendChild(table);
                 }
-                reader.readAsText(fileUpload.files[0]);
+                reader.readAsText(fileUpload.files[0])
             } else {
                 
                 error.innerHTML = "This browser does not support HTML5."
@@ -37,6 +39,8 @@ window.onload = (e)=>{
             error.innerHTML = "Please upload a valid CSV file."
         }
     }
+
+
     btn.addEventListener("submit", (e)=>{
         e.preventDefault();
         error.innerHTML = ""
